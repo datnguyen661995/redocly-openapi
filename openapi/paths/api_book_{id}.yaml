@@ -1,0 +1,48 @@
+get:
+  tags:
+    - book-controller
+  operationId: findById
+  parameters: []
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/Book.yaml
+put:
+  tags:
+    - book-controller
+  operationId: updateBook
+  parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: string
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/Book.yaml
+    required: true
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/Book.yaml
+delete:
+  tags:
+    - book-controller
+  operationId: deleteBook
+  parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: string
+  responses:
+    '200':
+      description: OK

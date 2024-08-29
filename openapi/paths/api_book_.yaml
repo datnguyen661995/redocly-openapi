@@ -1,0 +1,13 @@
+get:
+  tags:
+    - book-controller
+  operationId: findBooks
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            type: array
+            items:
+              $ref: ../components/schemas/Book.yaml

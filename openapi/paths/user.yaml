@@ -1,24 +1,28 @@
 parameters:
   - name: Accept-Language
     in: header
-    description: "The language you prefer for messages. Supported values are `en-AU, en-CA, en-GB, en-US`."
+    description: >-
+      The language you prefer for messages. Supported values are `en-AU, en-CA,
+      en-GB, en-US`.
     example: en-US
     required: false
     schema:
-        type: string
-        default: en-GB
+      type: string
+      default: en-GB
   - name: cookieParam
     in: cookie
-    description: "Example cookie parameter."
+    description: Example cookie parameter.
     required: true
     schema:
-        type: integer
-        format: int64
+      type: integer
+      format: int64
 post:
   tags:
     - Admin
   summary: Create a new user
-  description: "This operation creates a new user profile. Only administrators can create user profiles."
+  description: >-
+    This operation creates a new user profile. Only administrators can create
+    user profiles.
   operationId: createUser
   responses:
     '200':
@@ -27,26 +31,26 @@ post:
       description: Invalid input
   security:
     - main_auth:
-        - 'read:users'
-        - 'write:users'
+        - read:users
+        - write:users
   requestBody:
     content:
-        application/json:
-          schema:
-            discriminator:
-              propertyName: userType
-              mapping:
-                admin: '../components/schemas/Admin.yaml'
-                basic: '../components/schemas/Basic.yaml'
-            anyOf:
-              - $ref: '../components/schemas/Admin.yaml'
-              - $ref: '../components/schemas/Basic.yaml'
-        application/xml:
-          schema:
-            type: object
-            properties:
-                name: 
-                  type: string
-                  description: Example description
-    description: "User profile to be added to the database."
+      application/json:
+        schema:
+          discriminator:
+            propertyName: userType
+            mapping:
+              admin: ../components/schemas/Admin.yaml
+              basic: ../components/schemas/Basic.yaml
+          anyOf:
+            - $ref: ../components/schemas/Admin.yaml
+            - $ref: ../components/schemas/Basic.yaml
+      application/xml:
+        schema:
+          type: object
+          properties:
+            name:
+              type: string
+              description: Example description
+    description: User profile to be added to the database.
     required: true

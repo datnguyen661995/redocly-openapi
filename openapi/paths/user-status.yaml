@@ -2,13 +2,18 @@ get:
   tags:
     - Admin
   summary: List users by status
-  description: "This operation lets you list users by their status. Multiple status values can be provided in a single request by using comma-separated strings. Only administrators can use this operation.\n \n**This is an example of a deprecated operation.**"
+  description: >-
+    This operation lets you list users by their status. Multiple status values
+    can be provided in a single request by using comma-separated strings. Only
+    administrators can use this operation.
+     
+    **This is an example of a deprecated operation.**
   operationId: userStatus
   deprecated: true
   parameters:
     - name: status
       in: query
-      description: "One or more user status values by which to look up user accounts."
+      description: One or more user status values by which to look up user accounts.
       required: true
       style: form
       explode: false
@@ -23,7 +28,7 @@ get:
             - active
             - banned
             - inactive
-          default: active         
+          default: active
   responses:
     '200':
       description: Successful response example
@@ -32,12 +37,12 @@ get:
           schema:
             type: array
             items:
-              $ref: '../components/schemas/User.yaml'
+              $ref: ../components/schemas/User.yaml
         application/xml:
           schema:
             type: array
             items:
-              $ref: '../components/schemas/User.yaml'
+              $ref: ../components/schemas/User.yaml
         text/plain:
           examples:
             response:
@@ -46,5 +51,5 @@ get:
       description: Invalid status value was provided in the request
   security:
     - main_auth:
-        - 'read:users'
-        - 'write:users'
+        - read:users
+        - write:users

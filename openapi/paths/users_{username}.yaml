@@ -1,7 +1,9 @@
 parameters:
   - name: pretty_print
     in: query
-    description: "Choose whether to pretty print the response. This option is **disabled** by default."
+    description: >-
+      Choose whether to pretty print the response. This option is **disabled**
+      by default.
     schema:
       type: boolean
       default: false
@@ -16,20 +18,22 @@ get:
   parameters:
     - name: username
       in: path
-      description: "The username for which you want to retrieve the data."
+      description: The username for which you want to retrieve the data.
       example: John78
       required: true
       schema:
         type: string
     - name: with_email
       in: query
-      description: "Use this parameter to filter users without email. By default, only users with email are displayed."
+      description: >-
+        Use this parameter to filter users without email. By default, only users
+        with email are displayed.
       schema:
         type: boolean
         default: true
     - name: userid
       in: query
-      description: "ID of the user. This is an example of a **deprecated** parameter."
+      description: ID of the user. This is an example of a **deprecated** parameter.
       required: false
       deprecated: true
       schema:
@@ -45,10 +49,10 @@ get:
       content:
         application/json:
           schema:
-            $ref: '../components/schemas/User.yaml'
+            $ref: ../components/schemas/User.yaml
           example:
-            username: 'user1'
-            email: 'user@example.com'
+            username: user1
+            email: user@example.com
     '403':
       description: Forbidden
       $ref: ../components/responses/Problem.yaml
@@ -59,26 +63,28 @@ put:
   tags:
     - User
   summary: Update user data
-  description: "This operation allows users to update the information in their own profile. The update can only be performed by the logged in user."
+  description: >-
+    This operation allows users to update the information in their own profile.
+    The update can only be performed by the logged in user.
   operationId: updateUser
   parameters:
     - name: username
       in: path
-      description: "The name of the user profile to be **updated**."
+      description: The name of the user profile to be **updated**.
       required: true
       schema:
         type: string
   security:
     - main_auth:
-        - 'write:users'
+        - write:users
   requestBody:
     content:
       application/json:
         schema:
-          $ref: '../components/schemas/User.yaml'
+          $ref: ../components/schemas/User.yaml
       application/xml:
         schema:
-          $ref: '../components/schemas/User.yaml'
+          $ref: ../components/schemas/User.yaml
     description: Updated user object
     required: true
   responses:
@@ -106,7 +112,9 @@ delete:
   tags:
     - Admin
   summary: Delete a user
-  description: "This operation deletes all data associated with the requested `username`. Only administrators can perform this operation."
+  description: >-
+    This operation deletes all data associated with the requested `username`.
+    Only administrators can perform this operation.
   operationId: deleteUser
   parameters:
     - name: api_key
@@ -114,10 +122,10 @@ delete:
       required: false
       schema:
         type: string
-        example: 'Bearer <TOKEN>'
+        example: Bearer <TOKEN>
     - name: username
       in: path
-      description: "The name of the user profile to be **deleted**."
+      description: The name of the user profile to be **deleted**.
       example: John78
       required: true
       schema:
@@ -131,6 +139,6 @@ delete:
       description: User not found
   security:
     - main_auth:
-        - 'read:users'
-        - 'write:users'
+        - read:users
+        - write:users
     - api_key: []
