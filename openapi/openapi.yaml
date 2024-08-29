@@ -3,73 +3,10 @@ info:
   title: OpenAPI definition
   version: v0
 servers:
-- url: http://localhost:8081
-  description: Generated server url
+  - url: http://localhost:8081
+    description: Generated server url
 paths:
   /api/book/{id}:
-    get:
-      tags:
-      - book-controller
-      operationId: findById
-      parameters: []
-      responses:
-        "200":
-          description: OK
-          content:
-            '*/*':
-              schema:
-                $ref: "#/components/schemas/Book"
-    put:
-      tags:
-      - book-controller
-      operationId: updateBook
-      parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: string
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/Book"
-        required: true
-      responses:
-        "200":
-          description: OK
-          content:
-            '*/*':
-              schema:
-                $ref: "#/components/schemas/Book"
-    delete:
-      tags:
-      - book-controller
-      operationId: deleteBook
-      parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: string
-      responses:
-        "200":
-          description: OK
+    $ref: paths/api_book_{id}.yaml
   /api/book/:
-    get:
-      tags:
-      - book-controller
-      operationId: findBooks
-      responses:
-        "200":
-          description: OK
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/Book"
-components:
-  schemas:
-    Book:
-      type: object
+    $ref: paths/api_book_.yaml
