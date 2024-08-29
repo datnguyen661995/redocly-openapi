@@ -1,0 +1,13 @@
+get:
+  tags:
+    - product-controller
+  operationId: findProducts
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            type: array
+            items:
+              $ref: ../components/schemas/Product.yaml

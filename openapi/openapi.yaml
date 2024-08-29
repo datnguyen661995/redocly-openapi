@@ -6,7 +6,11 @@ servers:
   - url: http://localhost:8081
     description: Generated server url
 paths:
+  /api/product/{id}:
+    $ref: paths/api_product_{id}.yaml
   /api/book/{id}:
     $ref: paths/api_book_{id}.yaml
+  /api/product/:
+    $ref: paths/api_product_.yaml
   /api/book/:
     $ref: paths/api_book_.yaml

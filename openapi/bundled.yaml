@@ -6,11 +6,60 @@ servers:
   - url: http://localhost:8081
     description: Generated server url
 paths:
+  /api/product/{id}:
+    get:
+      tags:
+        - product-controller
+      operationId: findById
+      parameters: []
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Product'
+    put:
+      tags:
+        - product-controller
+      operationId: update
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Product'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Product'
+    delete:
+      tags:
+        - product-controller
+      operationId: delete
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
   /api/book/{id}:
     get:
       tags:
         - book-controller
-      operationId: findById
+      operationId: findById_1
       parameters: []
       responses:
         '200':
@@ -55,6 +104,20 @@ paths:
       responses:
         '200':
           description: OK
+  /api/product/:
+    get:
+      tags:
+        - product-controller
+      operationId: findProducts
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Product'
   /api/book/:
     get:
       tags:
@@ -71,5 +134,7 @@ paths:
                   $ref: '#/components/schemas/Book'
 components:
   schemas:
+    Product:
+      type: object
     Book:
       type: object

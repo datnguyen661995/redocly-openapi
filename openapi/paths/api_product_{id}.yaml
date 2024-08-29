@@ -1,7 +1,7 @@
 get:
   tags:
-    - book-controller
-  operationId: findById_1
+    - product-controller
+  operationId: findById
   parameters: []
   responses:
     '200':
@@ -9,11 +9,11 @@ get:
       content:
         '*/*':
           schema:
-            $ref: ../components/schemas/Book.yaml
+            $ref: ../components/schemas/Product.yaml
 put:
   tags:
-    - book-controller
-  operationId: updateBook
+    - product-controller
+  operationId: update
   parameters:
     - name: id
       in: path
@@ -24,7 +24,7 @@ put:
     content:
       application/json:
         schema:
-          $ref: ../components/schemas/Book.yaml
+          $ref: ../components/schemas/Product.yaml
     required: true
   responses:
     '200':
@@ -32,11 +32,11 @@ put:
       content:
         '*/*':
           schema:
-            $ref: ../components/schemas/Book.yaml
+            $ref: ../components/schemas/Product.yaml
 delete:
   tags:
-    - book-controller
-  operationId: deleteBook
+    - product-controller
+  operationId: delete
   parameters:
     - name: id
       in: path
